@@ -31,6 +31,24 @@
  * üres tömbbel
  */
 
+const getProducts = async (url = '') => {
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const sorted = data
+            .sort((a, b) => a.price - b.price)
+            .filter(a => a.price >= 25);
+        return sorted;
+    } catch (err) {
+        console.error(err);
+        return [];
+    }
+};
+
+export {
+    getProducts,
+}
+
 /**
  * TODO: exportáld ki helyesen a getProducts függvényt!
  */
